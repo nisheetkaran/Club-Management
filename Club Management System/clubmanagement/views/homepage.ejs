@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="style.css">
+  <title>Club Management System</title>
+</head>
+
+<body>
+  <br>
+  <h1 style="background:linear-gradient(-135deg, #c850c0, #4158d0); color:white; padding:20px; border-radius: 25px;">
+    Club Management System</h1>
+    <br>
+  <div class="wrapper">
+    <div class="title">
+      You Are:
+    </div>
+    <form class="" action="/admin" method="get">
+      <div class="field">
+        <input type="submit" name="submit" value="Administrator">
+      </div>
+    </form>
+    <form class="" action="/coordinator" method="get">
+      <div class="field">
+        <input type="submit" name="submit" value="Coordinator">
+      </div>
+    </form>
+    <form class="" action="/member" method="get">
+      <div class="field">
+        <input type="submit" name="submit" value="Member">
+      </div>
+    </form>
+  </div>
+  <br><br>
+  
+  <%- include("footer") -%>

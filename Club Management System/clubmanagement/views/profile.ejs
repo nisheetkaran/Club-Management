@@ -1,0 +1,31 @@
+<%- include("header",{header:header,whomToLogin:whomToLogin,name:name,email:email,rollNo:rollNo,course:course}) -%>
+
+    <div class="wrapper">
+        <div class="title">Your Profile</div>
+        <form action="/resetPassword" method="POST">
+            <div class="field">
+                <input type="text" required name="name" readonly>
+                <label>
+                    <%= name %>
+                </label>
+            </div>
+            <div class="field">
+                <input type="email" required name="email" readonly>
+                <label>
+                    <%= email %>
+                </label>
+            </div>
+            <% if(whomToLogin!=="Admin"){ %>
+                <div class="field">
+                    <input type="text" required name="rollNo" readonly>
+                    <label><%=rollNo%></label>
+                </div>
+                <div class="field">
+                    <input type="text" required name="course" readonly>
+                    <label><%=course%></label>
+                </div>
+            <% } %>
+        </form>
+    </div>
+
+    <%- include("footer") -%>

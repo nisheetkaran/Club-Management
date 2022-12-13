@@ -1,0 +1,169 @@
+<%- include("header",{header:header,whomToLogin:whomToLogin,name:name,email:email}) -%>
+  <br><br><br><br><br>
+  <div class="wrapper">
+    <div class="title">Coordinators</div>
+    <form action="/deleteCoordinator" method="POST">
+      <ul class="list-group list-group-flush">
+        <% for(var i=0;i < clubCoordinators.length ;i++){ %>
+          <li class="list-group-item d-flex justify-content-between align-items-center">
+            <%=clubCoordinators[i].name%>
+              <% if(whomToLogin=="Admin" ){ %>
+                <span><button type="button" id="myBtn" class="btn btn-danger btn-sm" data-toggle="modal"
+                    data-target="#staticBackdropc<%= i %>">Delete</button></span>
+                <div class="modal fade" id="staticBackdropc<%= i %>" data-backdrop="static" data-keyboard="false"
+                  tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                  <div class="modal-dialog">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h5 class="modal-title" id="staticBackdropLabel">Please Confirm</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                      </div>
+                      <div class="modal-body">
+                        Are you sure you want to proceed?
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary" formmethod="POST"
+                          formaction="/deleteCoordinator/<%= clubs[0].name %>/<%=clubCoordinators[i].email%>">Proceed</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <% } %>
+          </li>
+          <% } %>
+      </ul>
+      <% if(whomToLogin=="Admin" ){ %>
+        <!-- <div class="field">
+            <input type="submit" formmethod="GET" formaction="/registerCoordinator?name=Dance" value="Add a Coordinator">
+        </div> -->
+        <!-- <a href="/registerCoordinator?name=<%= clubs[0].name %>" class="btn btn-primary" style="background: linear-gradient(-135deg, #c850c0, #4158d0);">Add a coordinator</a> -->
+        <div class="field">
+          <a href="/registerCoordinator?name=<%= clubs[0].name %>"><input type="button"
+              style="background: linear-gradient(-135deg, #c850c0, #4158d0); color: white;"
+              value="Add a Coordinator"></a>
+        </div>
+
+        <!-- <input type="button" formmethod="GET" formaction="/registerCoordinator?name=Dance" value="Add a Coordinator"><a href="/registerCoordinator?name=<%= clubs[0].name %>"></a> -->
+
+        <% } %>
+          <% if(whomToLogin=="Admin" || whomToLogin=="Member" ){ %>
+            <div class="field">
+              <!-- <input type="submit" formmethod="GET" formaction="/makeAnnouncement?name=<%= clubs[0].name %>" value="View Posts"> -->
+              <!-- <a href="/makeAnnouncement?name=<%= clubs[0].name %>&whomToLogin=<%= whomToLogin %>&email=<%=email%>" ><input type="button" style="background: linear-gradient(-135deg, #c850c0, #4158d0); color: white;" value="View Posts"></a> -->
+              <a href="/makeAnnouncement?name=<%= clubs[0].name%>&whomToLogin=<%= whomToLogin %>&email=<%=email%>"><input
+                  type="button" style="background: linear-gradient(-135deg, #c850c0, #4158d0); color: white;"
+                  value="View Posts"></a>
+            </div>
+            <% } %>
+              <% if(whomToLogin=="CoOrdinator" ){ %>
+                <div class="field">
+                  <!-- <input type="submit" formmethod="GET" formaction="/makeAnnouncement?name=<%= clubs[0].name %>" value="Make Announcement"> -->
+                  <!-- <a href="/makeAnnouncement?name=<%= clubs[0].name %>&whomToLogin=<%= whomToLogin %>&email=<%=email%>" ><input type="button" style="background: linear-gradient(-135deg, #c850c0, #4158d0); color: white;" value="Make Announcement"></a> -->
+                  <a href="/makeAnnouncement?name=<%= clubs[0].name%>&whomToLogin=<%= whomToLogin %>&email=<%=email%>"><input
+                      type="button" style="background: linear-gradient(-135deg, #c850c0, #4158d0); color: white;"
+                      value="Make Announcement"></a>
+                </div>
+                <% } %>
+    </form>
+  </div>
+  <br><br><br>
+  <div class="wrapper">
+    <div class="title">Members</div>
+    <form action="/deleteMember" method="POST">
+      <ul class="list-group list-group-flush">
+        <% for(var i=0;i < clubMembers.length ;i++){ %>
+          <li class="list-group-item d-flex justify-content-between align-items-center">
+            <%=clubMembers[i].name%>
+              <% if(whomToLogin=="Member" && clubMembers[i].email==email){ %>
+                <span><button type="button" id="myBtn" class="btn btn-danger btn-sm" data-toggle="modal"
+                    data-target="#staticBackdrop<%= i %>">Leave Club</button></span>
+                <div class="modal fade" id="staticBackdrop<%= i %>" data-backdrop="static" data-keyboard="false"
+                  tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                  <div class="modal-dialog">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h5 class="modal-title" id="staticBackdropLabel">Please Confirm</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                      </div>
+                      <div class="modal-body">
+                        Are you sure you want to proceed?
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary" formmethod="POST"
+                          formaction="/deleteMember/<%= clubs[0].name %>/<%=clubMembers[i].email%> ">Proceed</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <% } %>
+                  <% if(whomToLogin=="Admin" ){ %>
+                    <span><button type="button" id="myBtn" class="btn btn-danger btn-sm" data-toggle="modal"
+                        data-target="#staticBackdrop<%= i %>">Delete</button></span>
+                    <div class="modal fade" id="staticBackdrop<%= i %>" data-backdrop="static" data-keyboard="false"
+                      tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                      <div class="modal-dialog">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <h5 class="modal-title" id="staticBackdropLabel">Please Confirm</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                              <span aria-hidden="true">&times;</span>
+                            </button>
+                          </div>
+                          <div class="modal-body">
+                            Are you sure you want to proceed?
+                          </div>
+                          <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-primary" formmethod="POST"
+                              formaction="/deleteMember/<%= clubs[0].name %>/<%=clubMembers[i].email%> ">Proceed</button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <% } %>
+          </li>
+          <% } %>
+      </ul>
+    </form>
+  </div>
+
+  <!-- ChatBox -->
+  <input type="checkbox" id="click">
+  <label class="chatbtn" for="click">
+    <i class="fab fa-facebook-messenger"></i>
+    <i class="fas fa-times"></i>
+  </label>
+  <div class="chatwrapper">
+    <div class="head-text">Welcome To Chat Box</div>
+    <div class="chat-box">
+      <div class="container"></div>
+      <div>
+        <form action="#" id="send-container">
+          <input type = "hidden" id="userName" name = "name" value = "<%=name%>" >
+          <input type="text" name="messageInp" id="messageInp" required placeholder="Enter Message">
+          <button class="chatsendbtn" type="submit"><i class="fas fa-paper-plane"></i></button>
+        </form>
+      </div>
+
+      </form>
+    </div>
+  </div>
+
+  <br><br>
+  <script>
+    function myFunction() {
+      if (confirm("Are you sure you want to delete coordinator?")) {
+
+      }
+    }
+  </script>
+  <script src="http://localhost:8000/socket.io/socket.io.js"></script>
+  <script src="chatbox/chatClient.js"></script>
+  <!-- <script data-main="chatbox/chatClient" src="chatbox/require.js"></script> -->
+  <%- include("footer") -%>

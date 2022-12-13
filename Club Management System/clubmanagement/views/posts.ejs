@@ -1,0 +1,55 @@
+<%- include("header",{header:header,whomToLogin:whomToLogin,name:name,email:email}) -%>
+<br><br><br><br><br>
+<% if(whomToLogin=="CoOrdinator"){ %>
+<div class="wrapper">
+    <div class="title">Announcement</div>
+    <form action="/upload/<%=clubs[0].name%>" enctype="multipart/form-data" method="POST">
+    <div class="field">
+        <input type="text" required name="announcementHeading">
+        <label>Heading</label>
+    </div>
+    <div class="field">
+        <input type="text" required name="makeAnnouncement">
+        <label>To Announce</label>
+    </div>
+    <input type="hidden" value="<%=clubs[0].name%>" name="clubNamePost">
+    <input type="hidden" value="<%=whomToLogin%>" name="whomToLoginPost">
+    <input type="hidden" value="<%=email%>" name="emailPost">
+    <input type="hidden" value="<%=name%>" name="NamePost">
+    <br>
+    <div class="upload-btn-wrapper">
+      <button type="button" class="fileInput">Upload a document</button>
+      <input type="file" name="upload" accept=".doc,.docx,.txt,.pdf,.xlsx,.csv,.pptx,.jpg,.jpeg,.gif,.png"/>
+    </div>
+    <div class="field">
+        <input type="submit" value="Announce">
+    </div>
+    </form>
+  </div>
+  <br><br>
+<% } %>
+<h3>Recent Announcements</h3>
+<ul class="list-group" style="width: 50%;">
+    <% if(posts.length==0){ %>
+        <li class="list-group-item" aria-current="true">No Announcement!</li> 
+    <% } %>   
+</ul>
+<br>
+    <% for(var i=posts.length-1;i >= 0; i--){ %>
+      <div class="card" style="width: 50%;">
+      <div class="card-header">
+        <h5 class="card-title"><%= posts[i].heading %></h5>
+      </div>
+    <div class="card-body">
+      <p class="card-text"><%= posts[i].body %></p>
+      <% if(posts[i].fileId){ %>
+        <iframe height="100" width="100" src="https://drive.google.com/file/d/<%= posts[i].fileId %>/preview"></iframe>
+      <% } %>
+    </div>
+    <div class="card-footer text-muted">
+      <%= posts[i].created %>
+    </div>
+    </div>
+    <% } %>
+<br><br>
+<%- include("footer") -%>

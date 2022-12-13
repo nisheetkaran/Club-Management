@@ -1,0 +1,35 @@
+<%- include("header",{header:header,whomToLogin:whomToLogin,name:name,email:email}) -%>
+<br><br><br><br>
+
+<div class="wrapper">
+    <div class="title">
+        New Coordinator
+    </div>
+    <form action="/registerCoordinator/<%=clubs[0].name%>" method="POST">
+        <div class="field">
+            <input type="text" required name="name">
+            <label>Name</label>
+        </div>
+        <div class="field">
+            <input type="number" required name="rollNo">
+            <label>Roll Number</label>
+        </div>
+        <div class="field">
+            <input type="number" required name="Year">
+            <label>Current Year of Coordinator</label>
+        </div>
+        <div class="field">
+            <input type="email" required name="email">
+            <label>Email</label>
+        </div>
+        <div class="field">
+            <input type="text" required name="Course">
+            <label>Course</label>
+        </div>
+        <div class="field">
+            <input type="submit" value="Add Coordinator">
+        </div>
+    </form>
+</div>
+
+<%- include("footer") -%>

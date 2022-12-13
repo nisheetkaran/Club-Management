@@ -1,0 +1,85 @@
+<%- include("header",{header:header,whomToLogin:whomToLogin,name:name,email:email}) -%>
+    <br><br><br>
+    <div class="row">
+        <% let clubNew = [],length=clubData.length %>
+        <% if(whomToLogin=='Member'){for(var i=0;i<member.clubs.length;i++){clubNew[i]=member.clubs[i].club}} %>
+            <% for (var i=0; i < length;i++){ %>
+                <% if(whomToLogin=='Member' && clubNew.includes(clubData[i].name) === false){continue;} %>
+                    <div class="col-sm-12 col-md-6 col-lg-4">
+                        <div class="card mt-4" style="width: 18rem;margin-left: 50px;margin-bottom: 20px;">
+                            <div class="card-body">
+                                <h3 class="card-title">
+                                    <%= clubData[i].name %>
+                                </h3>
+                                <p class="card-text">
+                                    <%= clubData[i].info %>
+                                </p>
+                                <!-- <a href="/clubdis?name=<%= clubData[i].name %>" class="btn btn-primary"
+                                    style="background: linear-gradient(-135deg, #c850c0, #4158d0);width: 100%;">
+                                    <%=clubData[i].name%>
+                                </a> -->
+                                <a href="/clubdis?name=<%= clubData[i].name %>&whomToLogin=<%= whomToLogin %>&email=<%=email%>" class="btn btn-primary" style="background: linear-gradient(-135deg, #c850c0, #4158d0);">Open Club Page</a>
+                            </div>
+                        </div>
+                    </div>
+                    <% } %>
+                        <% if(whomToLogin=="Member" ){ %>
+                            <form>
+                            <% for (var i=0; i < length;i++){ %>
+                                <% if(whomToLogin=="Member" && clubNew.includes(clubData[i].name) === true){continue;} %>
+                                    <div class="col-sm-12 col-md-6 col-lg-4">
+                                        <div class="card mt-4"
+                                            style="width: 18rem;margin-left: 50px;margin-bottom: 20px;">
+                                            <div class="card-body">
+                                                <h3 class="card-title">
+                                                    <%= clubData[i].name %>
+                                                </h3>
+                                                <p class="card-text">
+                                                    <%= clubData[i].info %>
+                                                </p>
+                                                <button type="button" class="btn btn-primary" style="background: linear-gradient(-135deg, #c850c0, #4158d0);width: 100%;" data-toggle="modal" data-target="#staticBackdrop<%= i %>">Enroll</button>
+                                                    <div class="modal fade" id="staticBackdrop<%= i %>" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                                                        <div class="modal-dialog">
+                                                          <div class="modal-content">
+                                                            <div class="modal-header">
+                                                              <h5 class="modal-title" id="staticBackdropLabel">Please Confirm</h5>
+                                                              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                <span aria-hidden="true">&times;</span>
+                                                              </button>
+                                                            </div>
+                                                            <div class="modal-body">
+                                                              Are you sure you want to proceed?
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                              <button type="submit" class="btn btn-primary" formmethod="POST" formaction="/enroll/<%= clubData[i].name %>/<%=email%>">Proceed</button>
+                                                            </div>
+                                                          </div>
+                                                        </div>
+                                                      </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <% } %>
+                                </form>
+                                        <% } %>
+                                        <% if(whomToLogin=="Admin"){ %>
+                                            <div class="col-sm-12 col-md-6 col-lg-4">
+                                                <div class="card mt-4"
+                                                    style="width: 18rem;margin-left: 50px;margin-bottom: 20px;">
+                                                    <div class="card-body">
+                                                        <h3 class="card-title">
+                                                            Add new club
+                                                        </h3>
+                                                        <p class="card-text">
+                                                            jvhagsdhjcjhagskcgasjdhvjhavjfycjdahsgdckqegvkajgbkcjd
+                                                        </p>
+                                                        <a href="/addClub"
+                                                            class="btn btn-primary"
+                                                            style="background: linear-gradient(-135deg, #c850c0, #4158d0);width: 100%;">Add new club</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <% } %>
+    </div>
+    <%- include("footer") -%>

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="style.css">
+  <title>Reset Password</title>
+</head>
+<body>
+  <div class="wrapper">
+    <div class="title">Reset Password</div>
+    <form action="/sendOtp" method="POST">
+    <div class="field">
+        <input type="email" required name="email">
+        <label>Email Address</label>
+    </div>
+    <div class="field">
+        <input type="submit" value="Send OTP">
+    </div>
+    </form>
+  </div>
+
+<%- include("footer") -%>

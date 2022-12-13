@@ -1,0 +1,22 @@
+<%- include("header",{header:header,whomToLogin:whomToLogin,name:name,email:email}) -%>
+
+<div class="wrapper">
+    <div class="title">
+        New Club
+    </div>
+    <form action="/addClub" method="POST">
+        <div class="field">
+            <input type="name" required name="clubName">
+            <label>Club Name</label>
+        </div>
+        <div class="field">
+            <input type="text" minlength="60" maxlength="80" required name="clubInfo">
+            <label>Club Info(60-80 characters)</label>
+        </div>
+        <div class="field">
+            <input type="submit" value="Add Club">
+        </div>
+    </form>
+</div>
+
+<%- include("footer") -%>
